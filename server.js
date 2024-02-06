@@ -17,8 +17,7 @@ app.get("/api/messages/:message", async (request, response) => {
       messages: [
         {
           role: "system",
-          content:
-            "You will turn the user's message into jejemon then add emojis. Then forget the history of the chat.",
+          content: "Your job is to convert the user's message into jejemon then add emojis.",
         },
         { role: "user", content: message },
       ],
