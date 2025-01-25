@@ -15,7 +15,7 @@ const model = genAI.getGenerativeModel({
 });
 
 const generationConfig = {
-  temperature: 0.35,
+  temperature: 0.85,
   topP: 0.95,
   topK: 40,
   maxOutputTokens: 8192,
@@ -30,16 +30,8 @@ app.get("/api/messages/:message", async (request, response) => {
     const message = request.params.message.split("&").join(" ");
     const chatSession = model.startChat({
       generationConfig,
-      history: [
-        {
-          role: "system",
-          parts: [
-            {
-              text: "Your job is to ONLY convert texts into jejemon, make it OA and add jejemon emojis if possible.\n",
-            },
-          ],
-        },
-      ],
+      systemInstruction:
+        "Your job is to ONLY convert texts into jejemon, make it OA and add jejemon emojis if possible.\n",
     });
 
     const result = await chatSession.sendMessage(message);
