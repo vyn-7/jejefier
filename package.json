@@ -1,0 +1,24 @@
+{
+    "name": "jejefier",
+    "version": "1.0.0",
+    "description": "Converts your normal messages to jejemon.",
+    "main": "server.js",
+    "engines": {
+        "node": "18.x"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Vane",
+    "license": "ISC",
+    "dependencies": {
+        "@google/generative-ai": "^0.21.0",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "fs": "^0.0.1-security",
+        "node": "^21.6.1",
+        "path": "^0.12.7"
+    }
+}
