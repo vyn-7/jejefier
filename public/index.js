@@ -7,17 +7,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const xhttp = new XMLHttpRequest();
 
     xhttp.onload = function () {
-      const response = JSON.parse(String(this.responseText));
-      if (response.success) {
-        output.setAttribute("value", response.message);
-        output.value = response.message;
+      const contentType = this.getResponseHeader("Content-Type");
+      if (contentType && contentType.includes("application/json")) {
+        try {
+          const response = JSON.parse(this.responseText);
+          if (response.success) {
+            output.setAttribute("value", response.message);
+            output.value = response.message;
+          } else {
+            output.setAttribute("value", "Error, the API key is expired");
+            output.value = "Error, the API key is expired.";
+          }
+        } catch (error) {
+          console.error("Error parsing JSON:", error);
+          output.setAttribute("value", "Invalid JSON response.");
+          output.value = "Invalid JSON response.";
+        }
       } else {
-        output.setAttribute(
-          "value",
-          "Error, the API is rate limited. Try again in the next few minutes."
-        );
-        output.value =
-          "Error, the API is rate limited. Try again in the next few minutes.";
+        console.error("Expected JSON, but got:", contentType);
+        output.setAttribute("value", "Unexpected response format.");
+        output.value = "Unexpected response format.";
       }
     };
 
