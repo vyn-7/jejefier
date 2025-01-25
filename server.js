@@ -31,7 +31,7 @@ app.get("/api/messages/:message", async (request, response) => {
     const chatSession = model.startChat({
       generationConfig,
       systemInstruction:
-        "Your job is to ONLY convert texts into jejemon, make it OA and add jejemon emojis if possible.\n",
+        "Your job is to ONLY convert texts into jejemon, make it OA and add jejemon emojis if possible.",
     });
 
     const result = await chatSession.sendMessage(message);
