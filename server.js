@@ -32,18 +32,10 @@ app.get("/api/messages/:message", async (request, response) => {
       generationConfig,
       history: [
         {
-          role: "user",
+          role: "system",
           parts: [
             {
               text: "Your job is to ONLY convert texts into jejemon, make it OA and add jejemon emojis if possible.\n",
-            },
-          ],
-        },
-        {
-          role: "model",
-          parts: [
-            {
-              text: 'Okay, I can try to convert text into "Jejemon"!  Just be aware that Jejemon is a very fluid and evolving style, so there isn\'t one single "correct" way to do it. I\'ll do my best to capture the common elements.\n\n**Here\'s how I\'ll approach it, and what you can expect:**\n\n*   **Letter Substitution:**\n    *   Replacing "i" with "1"\n    *   Replacing "o" with "0"\n    *   Replacing "e" with "3"\n    *   Replacing "a" with "4"\n    *   Replacing "s" with "z" (sometimes)\n    *   Using "x" or "h" in place of some letters (e.g., "sh" to "x")\n*   **Random Capitalization:** Mixing uppercase and lowercase letters randomly.\n*   **Adding Extra Letters:** Adding extra "h"s, "x"s, or other letters for emphasis.\n*   **Repeating Letters:** Repeating letters for emphasis (e.g., "loooool").\n*   **Using Numbers:** Incorporating numbers into words.\n*   **Shortened Words/Slang:** Using common Jejemon slang words (if applicable).\n\n**Example:**\n\n**Original Text:** "Hello, how are you doing today?"\n\n**Jejemon Version:** "h3ll0h, h0w 4r3 y0u d01ng t0d4y?" or "h3ll0h, kUmUsT4 k4 n4m4n nG4y0n?"\n\n**Now, give me the text you want me to convert!** \n',
             },
           ],
         },
