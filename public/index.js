@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         output.setAttribute(
           "value",
-          "Error, the API key that the creator used must have expired."
+          "Error, the API is rate limited. Try again in the next few minutes."
         );
         output.value =
-          "Error, the API key that the creator used must have expired.";
+          "Error, the API is rate limited. Try again in the next few minutes.";
       }
     };
 

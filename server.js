@@ -7,6 +7,8 @@ const {
   GoogleGenerativeAI,
   HarmCategory,
   HarmBlockThreshold,
+  Part,
+  Content,
 } = require("@google/generative-ai");
 
 const genAI = new GoogleGenerativeAI(process.env.API);
@@ -15,7 +17,7 @@ const model = genAI.getGenerativeModel({
 });
 
 const generationConfig = {
-  temperature: 0.85,
+  temperature: 0.15,
   topP: 0.95,
   topK: 40,
   maxOutputTokens: 8192,
@@ -28,10 +30,18 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/api/messages/:message", async (request, response) => {
   try {
     const message = request.params.message.split("&").join(" ");
+
+    const systemInstructionContent = {
+      parts: [
+        {
+          text: "You will convert the text that was given to you into a jejemon format. Make it exaggerated and include emojis if possible.",
+        },
+      ],
+    };
+
     const chatSession = model.startChat({
       generationConfig,
-      systemInstruction:
-        "Your job is to ONLY convert texts into jejemon, make it OA and add jejemon emojis if possible.",
+      systemInstruction: systemInstructionContent,
     });
 
     const result = await chatSession.sendMessage(message);
@@ -39,7 +49,10 @@ app.get("/api/messages/:message", async (request, response) => {
       .status(200)
       .send({ success: true, message: result.response.text() });
   } catch (error) {
-    response.status(500).send({ success: false, message: error });
+    console.error("Error during message processing:", error);
+    response
+      .status(500)
+      .send({ success: false, message: error.message || error });
   }
 });
 
@@ -51,4 +64,6 @@ app.get("*", (request, response) => {
   response.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
