@@ -181,18 +181,14 @@ body {
   overflow-wrap: break-word;
   resize: none;
   height: auto;
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
+  overflow: hidden;
 }
 
 .output::-webkit-scrollbar {
-  width: 8px;
+  display: none;
 }
 
-.output::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
-.output::-webkit-scrollbar-track {
-  background-color: transparent;
+.output {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
