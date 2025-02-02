@@ -34,7 +34,7 @@ app.get("/api/messages/:message", async (request, response) => {
     const systemInstructionContent = {
       parts: [
         {
-          text: "You will convert the text that was given to you into a jejemon format. Make it exaggerated and include emojis if possible, but do not respond too long.",
+          text: "You will convert the text that was given to you into extremely jejemon format. include emojis if possible, and do not make the response too long if possible.",
         },
       ],
     };
