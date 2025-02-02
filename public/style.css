@@ -21,9 +21,6 @@ body {
   width: 80%;
   border-radius: 20px;
   background-color: #1b1b1b;
-  box-shadow: inset 0px 1px 1px 0px rgba(255, 255, 255, 0.1),
-    0px 50px 100px -20px rgba(50, 50, 93, 0.25),
-    0px 30px 60px -30px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -141,7 +138,7 @@ body {
   padding: 0;
   height: 100%;
   width: 5em;
-  background-color: rgba(5, 5, 5, 0.164);
+  background-color: rgb(20, 20, 20);
 }
 
 .form {
@@ -179,4 +176,9 @@ body {
   text-align: center;
   outline: none;
   border: none;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  resize: none;
+  height: auto;
 }
